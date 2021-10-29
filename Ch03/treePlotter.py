@@ -4,6 +4,7 @@ Created on Oct 14, 2010
 @author: Peter Harrington
 '''
 import matplotlib.pyplot as plt
+import trees
 
 decisionNode = dict(boxstyle="sawtooth", fc="0.8")
 leafNode = dict(boxstyle="round4", fc="0.8")
@@ -11,7 +12,8 @@ arrow_args = dict(arrowstyle="<-")
 
 def getNumLeafs(myTree):
     numLeafs = 0
-    firstStr = myTree.keys()[0]
+    # firstStr = myTree.keys()[0]
+    firstStr = next(iter(myTree))
     secondDict = myTree[firstStr]
     for key in secondDict.keys():
         if type(secondDict[key]).__name__=='dict':#test to see if the nodes are dictonaires, if not they are leaf nodes
@@ -21,7 +23,8 @@ def getNumLeafs(myTree):
 
 def getTreeDepth(myTree):
     maxDepth = 0
-    firstStr = myTree.keys()[0]
+    # firstStr = myTree.keys()[0]
+    firstStr = next(iter(myTree))
     secondDict = myTree[firstStr]
     for key in secondDict.keys():
         if type(secondDict[key]).__name__=='dict':#test to see if the nodes are dictonaires, if not they are leaf nodes
@@ -43,7 +46,8 @@ def plotMidText(cntrPt, parentPt, txtString):
 def plotTree(myTree, parentPt, nodeTxt):#if the first key tells you what feat was split on
     numLeafs = getNumLeafs(myTree)  #this determines the x width of this tree
     depth = getTreeDepth(myTree)
-    firstStr = myTree.keys()[0]     #the text label for this node should be this
+    # firstStr = myTree.keys()[0]     #the text label for this node should be this
+    firstStr = next(iter(myTree))
     cntrPt = (plotTree.xOff + (1.0 + float(numLeafs))/2.0/plotTree.totalW, plotTree.yOff)
     plotMidText(cntrPt, parentPt, nodeTxt)
     plotNode(firstStr, cntrPt, parentPt, decisionNode)
@@ -86,3 +90,9 @@ def retrieveTree(i):
     return listOfTrees[i]
 
 #createPlot(thisTree)
+
+if __name__ == '__main__':
+    dataSet, labels = trees.createDataSet()
+    myTree = trees.createTree(dataSet, labels)
+    print(myTree)
+    createPlot(myTree)
