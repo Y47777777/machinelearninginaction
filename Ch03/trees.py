@@ -181,12 +181,23 @@ def classify(inputTree,featLabels,testVec):
     return classLabel
 
 def storeTree(inputTree,filename):
+    """
+    储存决策树
+    :param inputTree:
+    :param filename:
+    :return:
+    """
     import pickle
     fw = open(filename,'w')
     pickle.dump(inputTree,fw)
     fw.close()
     
 def grabTree(filename):
+    """
+    读取决策树
+    :param filename:
+    :return:
+    """
     import pickle
     fr = open(filename)
     return pickle.load(fr)
