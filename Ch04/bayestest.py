@@ -20,15 +20,11 @@ predict：常用的预测方法，直接给出测试集的预测类别输出
 predict_log_proba：预测出的各个类别对数概率里的最大值对应的类别，也就是predict方法得到类别
 predict_proba：它会给出测试集样本在各个类别上预测的概率，预测出的各个类别概率里的最大值对应的类别，也就是predict方法得到类别。
 确定要去掉的前deleteN个高频词的个数与最终检测准确率的关系，确定deleteN的取值：
-
 """
-
-
 
 
 """
 函数说明：切分中文语句
-
 """
 import os
 import jieba
